@@ -29,7 +29,6 @@ export default new Vuex.Store({
             axios
                 .get('/api/v1/query_all/c/')
                 .then(function (response) {
-                	console.log(response)
                     context.commit('INITNOTELIST', response.data.data)
                 })
                 .catch(function (error) {
