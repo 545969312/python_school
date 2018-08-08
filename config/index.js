@@ -17,8 +17,8 @@ module.exports = {
       //   changeOrigin: true, //改变源 
       //   pathRewrite: { 
       //     '^/api': '/api' //路径重写 
-          } 
-      } 
+          // } 
+      // } 
     },
 
     // Various Dev Server settings

@@ -1,9 +1,9 @@
 <template>
 	<div id='app'>
     <div>
-      <span>'获取所有的课程数据'</span>
-      <span @click='getList'>提交</span>
-      <span>{{NoteList}}</span>
+      <router-link to='/'>获取所有的课程数据</router-link>
+      <router-link to='/shop_car'>购物车</router-link>
+      <router-view/>
     </div>
 		    
 	</div>
@@ -13,22 +13,20 @@
 
 export default {
   name: 'App',
-
-  methods:{
-    getList:function(){
-      this.$store.dispatch('getList')
-      }
-    },
-
-  computed:{
-    NoteList:function(){
-      return this.$store.state.NoteList
-    }
-  }
   }
 
 </script>
 
 
 <style>
+.box{
+  height: 40px;
+  width: 1140px;
+  line-height: 40px;
+  background-color: #4395ff;
+  border-radius: 3px;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+}
 </style>

@@ -27,7 +27,7 @@ export default new Vuex.Store({
 	actions:{
 		getList(context) {
             axios
-                .get('/api/v1/query_all/c/')
+                .get('http://127.0.0.1:8000/api/v1/query_all/c/')
                 .then(function (response) {
                     context.commit('INITNOTELIST', response.data.data)
                 })
@@ -35,7 +35,23 @@ export default new Vuex.Store({
                     console.log(error);
                 });
         },
-        
+ 		addCar(context, newData){
+		return new Promise((resolve, reject)=>{
+			var pasrsedData=qs.stringify(newData);
+			axios({
+				method:'post',
+				url:'http://127.0.0.1:8000/api/v1/shop_car/',
+				data:pasrsedData
+			}).then((res)=>{
+				console.log('+++++++++++++++')
+				console.log(res.data)
+				resolve()
+			}).catch(function(err){
+				console.log(err)
+				reject()
+			})
+		})
+	}
 	}
 })
 
