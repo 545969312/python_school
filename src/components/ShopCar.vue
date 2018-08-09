@@ -1,38 +1,59 @@
 <template>
-	<div>
-		<div>
-			<input type="" placeholder="课程的名称" v-model='course_name'>
-		</div>
-		<div>
-			<input type="" placeholder="课程的价格" v-model='course_price'>
-		</div>
-		
-		<span @click='addCar'>添加到购物车</span>
+	<div>	
+		<ul>
+			<li @click='getShopCar'>
+				点击查看购物车
+			</li>
+			<li 
+			v-for='shop in ShopList'
+			v-bind:key='shop.id'
+			v-bind:shop='shop'
+			>
+				课程名称：{{shop.name}}
+
+			</li>
+			<li>
+				<ShopCarList
+				v-for='shop in ShopList'
+				v-bind:key='shop.id'
+				v-bind:shop='shop'
+				>
+				</ShopCarList>
+			</li>
+			
+		</ul>
 	</div>
 </template>
 
 <script>
+
+import ShopCarList from '@/components/ShopCarList'
 export default {
 
   name: 'ShopCar',
 
   data() {
     return {
-    	course_name:'',
-    	course_price:''
+
     };
+  },
+
+  components:{
+  	ShopCarList,
   },
 
   methods:{
 
-  	addCar(){
-      var newData={
-        course_name:this.course_name,
-        course_price:this.course_price,
-      };
-      this.$store.dispatch('addCar',newData)
+  	getShopCar(){
+      this.$store.dispatch('getShopCar')
     },
-}
+	},
+
+  computed:{
+  	ShopList:function(){
+    	return this.$store.state.ShopList //拿到购物车
+  }
+  },
 };
 </script>
 

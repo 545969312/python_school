@@ -14,6 +14,17 @@
 			>
 				{{ask.answer}}
 			</li>
+
+			<select v-model="selected">
+	        <option 
+	        v-for="p in item.price_policy" 
+	        v-bind:value="p.price_policy_id"
+	        v-bind:s_id="p.price_policy_id"
+	        >
+	    	{{p.price_policy_id}}学习周期{{p.valid_period}}价格{{p.price}}</option>
+		    </select>
+		    <span>已选:{{selected}}</span>
+
 			<button @click='btn'>
 				添加到购物车
 			</button>
@@ -32,18 +43,20 @@ export default {
     return {
     	id:'',
     	name:'',
-    	price:''
+    	price_policy:'',
+    	selected:''
     };
   },
   methods:{
 
   	btn(){
+
   		var newData={
 	  		id: this.item.id,
-	  		name: this.item.name,
-	  		price_policy: this.item.price_policy,
+	  		price_policy_id: this.selected,
 
   	};
+
   		this.$store.dispatch('addCar',newData)
   	}
   }
